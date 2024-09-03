@@ -1,0 +1,33 @@
+[
+    {
+      "_id": "101",
+      "country": "Bangladesh",
+      "description": "Discover the natural beauty of Bangladesh: the Sundarbans, Cox's Bazar beaches, Rangamati and Bandarban's hills, and Saint Martin's Island."
+    },
+    {
+      "_id": "102",
+      "country": "Thailand",
+      "description": "Experience Thailand's vibrant cities and islands: Bangkok, Ayutthaya, Phuket, Phi Phi Islands, and the cultural charm of Chiang Mai."
+    },
+    {
+      "_id": "103",
+      "country": "Indonesia",
+      "description": "Explore Indonesia's highlights: Bali, Borobudur Temple, Komodo National Park, Raja Ampat Islands, and Yogyakarta."
+    },
+    {
+      "_id": "104",
+      "country": "Malaysia",
+      "description": "Enjoy Malaysia's best: Kuala Lumpur, Langkawi, Penang, Cameron Highlands, and Taman Negara National Park."
+    },
+    {
+      "_id": "105",
+      "country": "Vietnam",
+      "description": "Visit Vietnam's top spots: Ha Long Bay, Ho Chi Minh City, Hoi An, Phong Nha Caves, and the Mekong Delta."
+    },
+    {
+      "_id": "106",
+      "country": "Cambodia",
+      "description": "See Cambodia's wonders: Angkor Wat, Siem Reap, Phnom Penh, Kep, and Bokor National Park."
+    }
+  ]
+  

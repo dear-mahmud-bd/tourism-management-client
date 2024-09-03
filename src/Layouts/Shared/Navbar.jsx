@@ -27,7 +27,7 @@ const Navbar = () => {
                             {navLinks}
                         </ul>
                     </div>
-                    <Link to="/" className="text-3xl font-bold">WanderSEA</Link>
+                    <Link to="/" className="text-3xl font-bold text-customLightBrown">WanderSEA</Link>
                 </div>
                 <div className="navbar-end gap-2">
                     <div className="navbar-center hidden md:flex">
@@ -49,7 +49,7 @@ const Navbar = () => {
                                 <a>Profile</a>
                             </li>
                             <li>
-                                <Link to='/my-lisr'>My List</Link>
+                                <Link to='/my-list'>My List</Link>
                             </li>
                             <li>
                                 <a> <CiLogout />Log Out</a>
