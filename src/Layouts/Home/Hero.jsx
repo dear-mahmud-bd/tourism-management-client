@@ -8,13 +8,14 @@ const Hero = () => {
 
                 <div className="md:w-1/2">
                     <h3 className="text-customLightBrown text-lg mb-2">Find your best travel place</h3>
-                    <h1 className="text-4xl md:text-5xl font-bold mb-4">Prepare yourself and let&apos;s enjoy the beauty of the world</h1>
-                    <p className="text-customLightBrown mb-6">Sint est eu sit ipsum enim amet esse sunt incididunt. Occaecat aliquip commodo ipsum officia in Lorem commodo aliquip dolore. Nisi domip excepteur commodo ea nostrud mollit.</p>
+                    <h1 className="text-4xl md:text-5xl font-bold mb-4">Prepare yourself and let&apos;s enjoy the beauty of the Southeast Asia</h1>
+                    <p className="text-customLightBrown mb-6">
+                        Immerse yourself in the diverse cultures, stunning landscapes, and vibrant cities of Southeast Asia. From tranquil beaches to bustling markets, every corner awaits your discovery.
+                    </p>
                     <button className="bg-customSandyBrown hover:bg-customLightBrown text-white font-bold py-2 px-4 rounded-full inline-flex items-center">
                         <PiPlayCircleBold className='text-2xl'></PiPlayCircleBold> Play Video
                     </button>
                 </div>
-
 
                 <div className="mt-8 md:mt-0 flex justify-center md:justify-end w-full md:w-1/2 space-x-4">
                     <div className="bg-white text-center rounded-lg shadow-lg p-4 w-28">
@@ -30,6 +31,7 @@ const Hero = () => {
                         <p className="text-customLightBrown">Happiness</p>
                     </div>
                 </div>
+
             </div>
         </div>
     );
