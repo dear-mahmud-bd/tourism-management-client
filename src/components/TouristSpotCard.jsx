@@ -1,5 +1,6 @@
 import PropTypes from 'prop-types';
 import { BiLocationPlus } from 'react-icons/bi';
+import { useNavigate } from 'react-router-dom';
 
 const TouristSpotCard = ({ spot }) => {
     const {
@@ -13,8 +14,10 @@ const TouristSpotCard = ({ spot }) => {
         seasonality,
     } = spot;
 
+    const navigate = useNavigate();
     const handleViewDetails = (_id) => {
-        console.log(_id);
+        // console.log(_id);
+        navigate(`/tourists-spot/${_id}`)
     };
 
     return (

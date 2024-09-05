@@ -3,6 +3,8 @@ import App from "../App";
 import Home from "../Pages/Home";
 import AllTouristSpot from "../Pages/AllTouristSpot";
 import axios from "axios";
+import TouristSpotDetails from "../components/TouristSpotDetails";
+import NotFound from "../Layouts/Shared/NotFound";
 
 const router = createBrowserRouter([
     {
@@ -14,10 +16,22 @@ const router = createBrowserRouter([
                 path: "/tourists-spot",
                 element: <AllTouristSpot></AllTouristSpot>,
                 loader: async () => {
-                    try{
+                    try {
                         const res = await axios.get('/tourist_spots.json');
                         return res.data;
-                    }catch(error){
+                    } catch (error) {
+                        throw new Response('Failed to load data', { status: error.response?.status || 500 });
+                    }
+                },
+            },
+            {
+                path: "/tourists-spot/:_id",
+                element: <TouristSpotDetails></TouristSpotDetails>,
+                loader: async () => {
+                    try {
+                        const res = await axios.get('/tourist_spots.json');
+                        return res.data;
+                    } catch (error) {
                         throw new Response('Failed to load data', { status: error.response?.status || 500 });
                     }
                 },
@@ -27,6 +41,7 @@ const router = createBrowserRouter([
             { path: "/contact", element: <h1>Contact </h1>, },
             { path: "/login", element: <h1>LogIn</h1>, },
             { path: "/register", element: <h1>Register</h1>, },
+            { path: "*", element: <NotFound></NotFound>, },
         ],
     },
 ]);

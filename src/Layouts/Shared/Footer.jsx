@@ -6,7 +6,7 @@ const Footer = () => {
             <div className="container max-w-7xl mx-auto">
                 <div className="container mx-auto flex flex-wrap justify-between">
                     <div className="w-full sm:w-1/2 md:w-1/4 lg:w-1/6 px-4 mb-4">
-                        <h2 className="text-xl font-bold mb-4">About</h2>
+                        <h2 className="text-xl font-bold mb-4">WanderSEA</h2>
                         <ul>
                             <li><a href="" className=" hover:text-gray-600">Who are we?</a></li>
                             <li><a href="" className=" hover:text-gray-600">Our Team</a></li>
