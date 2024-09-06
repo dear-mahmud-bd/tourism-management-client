@@ -4,16 +4,12 @@ import { FaUsers } from "react-icons/fa";
 import { IoLocationSharp } from "react-icons/io5";
 import { LuCalendarDays } from "react-icons/lu";
 import { MdAccessTime } from "react-icons/md";
-import { useLoaderData, useParams } from "react-router-dom";
+import { useLoaderData } from "react-router-dom";
 
 
 const TouristSpotDetails = () => {
-
-    const allSpots = useLoaderData();
-    const { _id } = useParams();
-
-    console.log(_id, allSpots);
-    const touristSpot = allSpots.find(spot => spot._id === _id);
+    const touristSpot = useLoaderData();
+    // 66daf4a21c58959931fb8ca5
 
     useEffect(() => {
         window.scrollTo(0, 0);

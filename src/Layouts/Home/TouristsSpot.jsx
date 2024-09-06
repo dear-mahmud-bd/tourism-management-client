@@ -5,9 +5,10 @@ import TouristSpotCard from "../../components/TouristSpotCard";
 
 const TouristsSpot = () => {
     const [spots, setSpots] = useState([]);
+    
     useEffect(() => {
         const fetchData = async () => {
-            const res = await axios.get('/tourist_spots.json');
+            const res = await axios.get('http://localhost:5000/all-spot');
             setSpots(res.data);
         };
         fetchData();

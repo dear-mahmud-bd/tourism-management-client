@@ -4,6 +4,7 @@ import { CiLogin, CiLogout } from 'react-icons/ci';
 import { Link, NavLink } from 'react-router-dom';
 import { AuthContext } from '../../providers/AuthProvider';
 import { showToast } from '../../utility/useToast';
+import { BiUserPlus } from 'react-icons/bi';
 
 const Navbar = () => {
     const { user, userSignOut } = useContext(AuthContext);
@@ -12,7 +13,7 @@ const Navbar = () => {
         userSignOut()
             .then(() => {
                 showToast('success', 'Log-out successful');
-                
+
             })
             .catch((error) => {
                 showToast('error', 'Log-out unsuccessful');
@@ -23,7 +24,10 @@ const Navbar = () => {
     const navLinks = <>
         <li><NavLink className={({ isActive }) => addClass(isActive)} to="/">Home</NavLink></li>
         <li><NavLink className={({ isActive }) => addClass(isActive)} to="/tourists-spot">Tourists Spot</NavLink></li>
-        <li><NavLink className={({ isActive }) => addClass(isActive)} to="/add-tourists-spot">Add Tourists Spot</NavLink></li>
+        {
+            user &&
+            <li><NavLink className={({ isActive }) => addClass(isActive)} to="/my-list">My List</NavLink></li>
+        }
         <li><NavLink className={({ isActive }) => addClass(isActive)} to="/contact">Contact</NavLink></li>
     </>
 
@@ -51,11 +55,10 @@ const Navbar = () => {
                     </div>
                     {
                         user ?
-
-                            <div className="dropdown dropdown-end">
+                            <div className="dropdown dropdown-hover dropdown-end">
                                 <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar">
                                     <div className="w-20 rounded-full ring ring-offset-2 ring-customLightBrown">
-                                        <img src="https://i.ibb.co/zZ0brtf/user.png" alt="Profile Img" />
+                                        <img src={user?.photoURL} alt="Profile Img" />
                                     </div>
                                 </div>
                                 <ul tabIndex={0} className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt--2 w-52 p-2 shadow">
@@ -63,10 +66,10 @@ const Navbar = () => {
                                         <p className=''>My Name</p>
                                     </li>
                                     <li>
-                                        <a>Profile</a>
+                                        <Link to='/profile'>My Profile</Link>
                                     </li>
                                     <li>
-                                        <Link to='/my-list'>My List</Link>
+                                        <Link to='/add-tourists-spot'>Add Tourists Spot</Link>
                                     </li>
                                     <li>
                                         <a onClick={handleSignOut}> <CiLogout />Log Out</a>
@@ -74,9 +77,14 @@ const Navbar = () => {
                                 </ul>
                             </div>
                             :
-                            <Link to='/login' className="btn font-bold bg-customPaleBeige hover:bg-customSandyBrown text-white">
-                                Log In<CiLogin className='text-2xl' />
-                            </Link>
+                            <>
+                                <Link to='/register' className="btn font-bold bg-customPaleBeige hover:bg-customSandyBrown text-white">
+                                    <BiUserPlus className='text-2xl' />Register
+                                </Link>
+                                <Link to='/login' className="btn font-bold bg-customPaleBeige hover:bg-customSandyBrown text-white">
+                                    Log In<CiLogin className='text-2xl' />
+                                </Link>
+                            </>
                     }
                 </div>
             </div>
