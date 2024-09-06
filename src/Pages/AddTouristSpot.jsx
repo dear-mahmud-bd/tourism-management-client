@@ -3,6 +3,7 @@ import { useContext, useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { AuthContext } from '../providers/AuthProvider';
 import { Helmet } from 'react-helmet';
+import Swal from 'sweetalert2';
 
 const AddTouristSpot = () => {
 
@@ -16,15 +17,39 @@ const AddTouristSpot = () => {
         reset,
     } = useForm();
     useEffect(() => {
-        setValue('email', user?.email || '');
+        setValue('user_email', user?.email || '');
         setValue('user_name', user?.displayName || '');
     }, [user, setValue]);
 
-    // Function to handle form submission
-    const onSubmit = (data) => {
-        console.log(data);
-        // Add form submission logic here, e.g., sending data to the server
-        reset(); // Reset form fields after submission
+
+    const onSubmit = (formData) => {
+        console.log(formData);
+        fetch('http://localhost:5000/all-spot', {
+            method: 'POST',
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify(formData)
+        })
+            .then(res => res.json())
+            .then(data => {
+                console.log(data);
+                if (data.insertedId) {
+                    Swal.fire({
+                        title: 'Success!',
+                        text: 'Tourist Spot Added Successfully',
+                        icon: 'success',
+                        confirmButtonText: 'Okay',
+                        customClass: {
+                            confirmButton: 'btn btn-success text-white'
+                        }
+                    })
+                }
+            })
+        reset({
+            user_email: formData.user_email,
+            user_name: formData.user_name,
+        });
     };
 
     return (
@@ -32,7 +57,7 @@ const AddTouristSpot = () => {
             <Helmet>
                 <title>Add Tourist Spot</title>
             </Helmet>
-            <h2 className="text-2xl font-bold mb-6 text-center">Add Tourist Spot</h2>
+            <h2 className="text-2xl font-bold mb-6 text-center ">Add Tourist Spot</h2>
             <form onSubmit={handleSubmit(onSubmit)} className="grid grid-cols-1 md:grid-cols-2 gap-2 gap-x-4">
 
 
@@ -56,6 +81,9 @@ const AddTouristSpot = () => {
                         type="text"
                         {...register('country_Name', {
                             required: 'Country Name is required',
+                            validate: (value) =>
+                                ['bangladesh', 'cambodia', 'indonesia', 'malaysia', 'thailand', 'vietnam'].includes(value.toLowerCase()) ||
+                                'The value must be a valid country (Bangladesh, Cambodia, Indonesia, Malaysia, Thailand, Vietnam)',
                         })}
                         className="w-full px-4 py-2 rounded-lg font-medium bg-gray-100 border border-gray-200 placeholder-gray-500 text-sm focus:outline-none focus:border-gray-400 focus:bg-white"
                         placeholder="Enter Country Name"
@@ -114,9 +142,10 @@ const AddTouristSpot = () => {
                         {...register('average_cost', {
                             required: 'Average Cost is required',
                             min: {
-                                value: 1,
-                                message: 'Cost must be at least 1',
+                                value: 10,
+                                message: 'Cost must be at least $10',
                             },
+                            validate: value => value > 0 || 'Cost must be a positive number',
                         })}
                         className="w-full px-4 py-2 rounded-lg font-medium bg-gray-100 border border-gray-200 placeholder-gray-500 text-sm focus:outline-none focus:border-gray-400 focus:bg-white"
                         placeholder="Enter Average Cost"
