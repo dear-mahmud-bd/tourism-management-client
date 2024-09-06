@@ -5,6 +5,8 @@ import AllTouristSpot from "../Pages/AllTouristSpot";
 import axios from "axios";
 import TouristSpotDetails from "../components/TouristSpotDetails";
 import NotFound from "../Layouts/Shared/NotFound";
+import LogIn from "../Pages/LogIn";
+import Register from "../Pages/Register";
 
 const router = createBrowserRouter([
     {
@@ -39,8 +41,8 @@ const router = createBrowserRouter([
             { path: "/add-tourists-spot", element: <h1>Add Tourists Spot</h1>, },
             { path: "/my-list", element: <h1>My List</h1>, },
             { path: "/contact", element: <h1>Contact </h1>, },
-            { path: "/login", element: <h1>LogIn</h1>, },
-            { path: "/register", element: <h1>Register</h1>, },
+            { path: "/login", element: <LogIn></LogIn>, },
+            { path: "/register", element: <Register></Register>, },
             { path: "*", element: <NotFound></NotFound>, },
         ],
     },
