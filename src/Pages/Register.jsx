@@ -74,7 +74,10 @@ const Register = () => {
                     <input
                         {...register('email', {
                             required: true,
-                            pattern: /^\S+@\S+$/i
+                            pattern: {
+                                value: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
+                                message: 'Enter a valid email address',
+                            },
                         })} type="email" placeholder="Email" className="w-full px-8 py-4 rounded-lg font-medium bg-gray-100 border border-gray-200 placeholder-gray-500 text-sm focus:outline-none focus:border-gray-400 focus:bg-white mt-5"
                     />
                     {errors.email && <p className="text-red-500 text-sm">Valid email is required.</p>}

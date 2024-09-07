@@ -8,6 +8,6 @@
 - To set dynamic title use `react-helmet`.
 - Using `react-hook-form` to manage form data easily.
 - Google `firebase` is used for authentication and authorization.
-
-
+- To show the message, the website used `sweetalert2` and `react-toastify`.
+- 
 

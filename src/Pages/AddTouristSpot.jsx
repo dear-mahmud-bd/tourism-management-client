@@ -33,7 +33,7 @@ const AddTouristSpot = () => {
         })
             .then(res => res.json())
             .then(data => {
-                console.log(data);
+                // console.log(data);
                 if (data.insertedId) {
                     Swal.fire({
                         title: 'Success!',
@@ -43,13 +43,22 @@ const AddTouristSpot = () => {
                         customClass: {
                             confirmButton: 'btn btn-success text-white'
                         }
-                    })
+                    });
+                    reset({
+                        user_email: formData.user_email,
+                        user_name: formData.user_name,
+                        image: '',
+                        tourists_spot_name: '',
+                        country_Name: '',
+                        location: '',
+                        short_description: '',
+                        average_cost: '',
+                        seasonality: '',
+                        travel_time: '',
+                        totalVisitorsPerYear: '',
+                    });
                 }
             })
-        reset({
-            user_email: formData.user_email,
-            user_name: formData.user_name,
-        });
     };
 
     return (

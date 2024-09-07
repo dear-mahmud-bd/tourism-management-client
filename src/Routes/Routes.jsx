@@ -10,6 +10,7 @@ import AllTouristSpot from "../Pages/AllTouristSpot";
 import TouristSpotDetails from "../components/TouristSpotDetails";
 import UserProfile from "../Pages/UserProfile";
 import AddTouristSpot from "../Pages/AddTouristSpot";
+import MyList from "../Pages/MyList";
 
 
 const router = createBrowserRouter([
@@ -44,7 +45,7 @@ const router = createBrowserRouter([
                 },
             },
             { path: "/add-tourists-spot", element: <ProtectedRoute> <AddTouristSpot></AddTouristSpot> </ProtectedRoute>, },
-            { path: "/my-list", element: <ProtectedRoute><h1>My List</h1> </ProtectedRoute>, },
+            { path: "/my-list", element: <ProtectedRoute> <MyList></MyList> </ProtectedRoute>, },
             { path: "/profile", element: <ProtectedRoute><UserProfile></UserProfile></ProtectedRoute>, },
             { path: "/contact", element: <h1>Contact </h1>, },
             { path: "/login", element: <LogIn></LogIn>, },
