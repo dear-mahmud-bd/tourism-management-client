@@ -1,9 +1,16 @@
 import PropTypes from 'prop-types';
+import { useNavigate } from 'react-router-dom';
 
 const CountryCard = ({ country }) => {
-    const { country: ctry, image, description } = country;
+    const { country: ctry, image, description, slug } = country;
+
+    const navigate = useNavigate();
+    const handleCardClick = (slug) => {
+        navigate(`/tourists-spot?country=${slug}`);
+    };
+
     return (
-        <div>
+        <div onClick={() => handleCardClick(slug)}>
             <article className="mx-auto w-full h-80 shadow-xl bg-cover bg-center transform duration-500 cursor-pointer group"
                 style={{ backgroundImage: `url(${image})` }}
             >

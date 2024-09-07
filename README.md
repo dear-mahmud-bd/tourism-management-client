@@ -11,5 +11,6 @@
 - Using `react-hook-form` to manage form data easily.
 - Google `firebase` is used for authentication and authorization.
 - To show the message, the website used `sweetalert2` and `react-toastify`.
+- Handled optional chaining in URLs to show tourist spots in specific countries.
 - handle errorElement Page.
 

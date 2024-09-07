@@ -24,9 +24,13 @@ const router = createBrowserRouter([
             {
                 path: "/tourists-spot",
                 element: <AllTouristSpot></AllTouristSpot>,
-                loader: async () => {
+                loader: async ({ request }) => {
+                    const url = new URL(request.url);
+                    const country = url.searchParams.get('country');
+                    let query = '';
+                    if (country) query = `?country=${country}`;
                     try {
-                        const res = await axios.get('http://localhost:5000/all-spot');
+                        const res = await axios.get(`http://localhost:5000/all-spot${query}`);
                         return res.data;
                     } catch (error) {
                         throw new Response('Failed to load data', { status: error.response?.status || 500 });
