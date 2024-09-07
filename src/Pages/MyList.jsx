@@ -2,6 +2,8 @@ import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../providers/AuthProvider";
 import { Helmet } from "react-helmet";
 import { Link } from "react-router-dom";
+import Swal from "sweetalert2";
+import { showToast } from "../utility/useToast";
 
 const MyList = () => {
     const { user } = useContext(AuthContext);
@@ -13,11 +15,39 @@ const MyList = () => {
         fetch(url)
             .then(res => res.json())
             .then(data => {
-                console.log('Fetched data:', data);
+                // console.log('Fetched User data:', data);
                 setSpots(data);
             })
     }, [url]);
 
+    const handleSpotDelete = _id => {
+        console.log(_id);
+        Swal.fire({
+            title: 'Are you sure?',
+            text: "You want to delete this spot!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#d33333',
+            cancelButtonColor: '#3085d6',
+            confirmButtonText: 'Yes, delete it!'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                fetch(`http://localhost:5000/all-spot/${_id}`, {
+                    method: 'DELETE'
+                })
+                    .then(res => res.json())
+                    .then(data => {
+                        console.log(data);
+                        if (data.deletedCount > 0) {
+                            showToast('success', 'Your tourist spot has been deleted.');
+                            const remaining = spots.filter(cof => cof._id !== _id);
+                            setSpots(remaining);
+                        }
+                    })
+
+            }
+        })
+    };
     return (
         <div className="max-w-5xl mx-auto">
             <Helmet>
@@ -61,7 +91,7 @@ const MyList = () => {
                                         </div>
                                     </td>
                                     <td>
-                                        <button className="btn btn-error text-white">Delete</button>
+                                        <button onClick={() => handleSpotDelete(spot?._id)} className="btn btn-error text-white">Delete</button>
                                     </td>
                                     <td>
                                         <button className="btn btn-info text-white">Update</button>

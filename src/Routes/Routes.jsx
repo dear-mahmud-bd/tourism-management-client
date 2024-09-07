@@ -47,6 +47,8 @@ const router = createBrowserRouter([
             { path: "/add-tourists-spot", element: <ProtectedRoute> <AddTouristSpot></AddTouristSpot> </ProtectedRoute>, },
             { path: "/my-list", element: <ProtectedRoute> <MyList></MyList> </ProtectedRoute>, },
             { path: "/profile", element: <ProtectedRoute><UserProfile></UserProfile></ProtectedRoute>, },
+
+            
             { path: "/contact", element: <h1>Contact </h1>, },
             { path: "/login", element: <LogIn></LogIn>, },
             { path: "/register", element: <Register></Register>, },
