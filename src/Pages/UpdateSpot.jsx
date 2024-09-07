@@ -1,12 +1,15 @@
 import { Helmet } from "react-helmet";
 import { useLoaderData } from "react-router-dom";
 import { useForm } from 'react-hook-form';
-import { useEffect } from "react";
+import { useContext, useEffect } from "react";
+import { AuthContext } from "../providers/AuthProvider";
+import { showToast } from "../utility/useToast";
 
 
 const UpdateSpot = () => {
+    const { user } = useContext(AuthContext);
     const spot = useLoaderData();
-    console.log(spot);
+    // console.log(user.email, spot);
 
     const {
         register,
@@ -15,25 +18,52 @@ const UpdateSpot = () => {
         formState: { errors },
     } = useForm();
     useEffect(() => {
+        setValue('tourists_spot_name', spot?.tourists_spot_name || '');
+        setValue('country_Name', spot?.country_Name || '');
+        setValue('location', spot?.location || '');
+        setValue('image', spot?.image || '');
+        setValue('short_description', spot?.short_description || '');
+        setValue('average_cost', spot?.average_cost || '');
+        setValue('seasonality', spot?.seasonality || '');
+        setValue('travel_time', spot?.travel_time || '');
+        setValue('totalVisitorsPerYear', spot?.totalVisitorsPerYear || '');
         setValue('user_email', spot?.user_email || '');
         setValue('user_name', spot?.user_name || '');
-        setValue('totalVisitorsPerYear', spot?.totalVisitorsPerYear || '');
-        setValue('travel_time', spot?.travel_time || '');
-        setValue('seasonality', spot?.seasonality || '');
-        setValue('average_cost', spot?.average_cost || '');
-        setValue('short_description', spot?.short_description || '');
-        setValue('image', spot?.image || '');
-        setValue('location', spot?.location || '');
-        setValue('country_Name', spot?.country_Name || '');
-        setValue('tourists_spot_name', spot?.tourists_spot_name || '');
     }, [spot, setValue]);
 
     const onSubmit = (formData) => {
         console.log(formData);
-
+        fetch(`http://localhost:5000/all-spot/${spot?._id}`, {
+            method: 'PUT',
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify(formData)
+        })
+            .then(res => res.json())
+            .then(data => {
+                console.log(data);
+                if (data.modifiedCount > 0) {
+                    showToast('success','Spot Updated Successfully');
+                }else{
+                    showToast('error','Spot was not Updated');
+                }
+            })
 
     };
 
+
+    if (user?.email !== spot?.user_email) {
+        return (
+            <div className="text-center flex flex-col items-center justify-center h-60 md:h-96">
+                <Helmet>
+                    <title>Unauthorised</title>
+                </Helmet>
+                <h1 className="text-4xl font-bold text-red-600">Unauthorised Access</h1>
+                <p className="text-lg font-semibold text-gray-600 mt-2">You cannot modify other&apos;s data</p>
+            </div>
+        );
+    }
     if (!spot) {
         return (
             <div className="text-center flex flex-col items-center justify-center h-60 md:h-96">
@@ -239,7 +269,7 @@ const UpdateSpot = () => {
 
                 <div className="md:col-span-2 text-center">
                     <button type="submit" className="mt-4 px-6 py-3 bg-customPaleBeige text-white font-semibold rounded-md hover:bg-customSandyBrown transition duration-300" >
-                        Add Spot
+                        Update Spot
                     </button>
                 </div>
             </form>

@@ -2,6 +2,8 @@
 
 ## [Live Site URL](http://localhost:5173/)
 
+### Category -`B9 A10 Type-01 Requirements`
+
 ## Features
 - Use `react-router-dom` to handle single page mechanism.
 - For Emoji use [this](https://getemoji.com/) website to get.
