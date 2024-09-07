@@ -11,6 +11,7 @@ import TouristSpotDetails from "../components/TouristSpotDetails";
 import UserProfile from "../Pages/UserProfile";
 import AddTouristSpot from "../Pages/AddTouristSpot";
 import MyList from "../Pages/MyList";
+import UpdateSpot from "../Pages/UpdateSpot";
 
 
 const router = createBrowserRouter([
@@ -47,8 +48,20 @@ const router = createBrowserRouter([
             { path: "/add-tourists-spot", element: <ProtectedRoute> <AddTouristSpot></AddTouristSpot> </ProtectedRoute>, },
             { path: "/my-list", element: <ProtectedRoute> <MyList></MyList> </ProtectedRoute>, },
             { path: "/profile", element: <ProtectedRoute><UserProfile></UserProfile></ProtectedRoute>, },
+            {
+                path: "/update-spot/:_id",
+                element: <ProtectedRoute> <UpdateSpot></UpdateSpot> </ProtectedRoute>,
+                loader: async ({ params }) => {
+                    try {
+                        const res = await axios.get(`http://localhost:5000/all-spot/${params._id}`);
+                        return res.data;
+                    } catch (error) {
+                        throw new Response('Failed to load data', { status: error.response?.status || 500 });
+                    }
+                },
+            },
 
-            
+
             { path: "/contact", element: <h1>Contact </h1>, },
             { path: "/login", element: <LogIn></LogIn>, },
             { path: "/register", element: <Register></Register>, },

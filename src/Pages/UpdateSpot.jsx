@@ -1,71 +1,59 @@
-
-import { useContext, useEffect } from 'react';
+import { Helmet } from "react-helmet";
+import { useLoaderData } from "react-router-dom";
 import { useForm } from 'react-hook-form';
-import { AuthContext } from '../providers/AuthProvider';
-import { Helmet } from 'react-helmet';
-import Swal from 'sweetalert2';
+import { useEffect } from "react";
 
-const AddTouristSpot = () => {
-    const { user } = useContext(AuthContext);
+
+const UpdateSpot = () => {
+    const spot = useLoaderData();
+    console.log(spot);
 
     const {
         register,
         handleSubmit,
         setValue,
         formState: { errors },
-        reset,
     } = useForm();
     useEffect(() => {
-        setValue('user_email', user?.email || '');
-        setValue('user_name', user?.displayName || '');
-    }, [user, setValue]);
-
+        setValue('user_email', spot?.user_email || '');
+        setValue('user_name', spot?.user_name || '');
+        setValue('totalVisitorsPerYear', spot?.totalVisitorsPerYear || '');
+        setValue('travel_time', spot?.travel_time || '');
+        setValue('seasonality', spot?.seasonality || '');
+        setValue('average_cost', spot?.average_cost || '');
+        setValue('short_description', spot?.short_description || '');
+        setValue('image', spot?.image || '');
+        setValue('location', spot?.location || '');
+        setValue('country_Name', spot?.country_Name || '');
+        setValue('tourists_spot_name', spot?.tourists_spot_name || '');
+    }, [spot, setValue]);
 
     const onSubmit = (formData) => {
         console.log(formData);
-        fetch('http://localhost:5000/all-spot', {
-            method: 'POST',
-            headers: {
-                'content-type': 'application/json'
-            },
-            body: JSON.stringify(formData)
-        })
-            .then(res => res.json())
-            .then(data => {
-                // console.log(data);
-                if (data.insertedId) {
-                    Swal.fire({
-                        title: 'Success!',
-                        text: 'Tourist Spot Added Successfully',
-                        icon: 'success',
-                        confirmButtonText: 'Okay',
-                        customClass: {
-                            confirmButton: 'btn btn-success text-white'
-                        }
-                    });
-                    reset({
-                        user_email: formData.user_email,
-                        user_name: formData.user_name,
-                        image: '',
-                        tourists_spot_name: '',
-                        country_Name: '',
-                        location: '',
-                        short_description: '',
-                        average_cost: '',
-                        seasonality: '',
-                        travel_time: '',
-                        totalVisitorsPerYear: '',
-                    });
-                }
-            })
+
+
     };
 
+    if (!spot) {
+        return (
+            <div className="text-center flex flex-col items-center justify-center h-60 md:h-96">
+                <Helmet>
+                    <title>Spot Not Found</title>
+                </Helmet>
+                <h1 className="text-4xl font-bold text-red-600">Tourist Spot Not Found</h1>
+                <p className="text-lg font-semibold text-gray-600 mt-2">Sorry, the tourist spot you are updating for does not exist.</p>
+            </div>
+        );
+    }
     return (
         <div className="max-w-6xl mx-auto p-6 bg-white rounded-lg shadow-md">
             <Helmet>
-                <title>Add Tourist Spot</title>
+                <title>Update Tourist Spot</title>
             </Helmet>
-            <h2 className="text-2xl font-bold mb-6 text-center ">Add Tourist Spot</h2>
+
+            <h2 className="text-2xl font-bold mb-6 text-center ">Update Tourist Spot</h2>
+
+
             <form onSubmit={handleSubmit(onSubmit)} className="grid grid-cols-1 md:grid-cols-2 gap-2 gap-x-4">
 
 
@@ -259,4 +247,4 @@ const AddTouristSpot = () => {
     );
 };
 
-export default AddTouristSpot;
+export default UpdateSpot;

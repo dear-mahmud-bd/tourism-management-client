@@ -10,7 +10,6 @@ const MyList = () => {
     const [spots, setSpots] = useState([]);
 
     const url = `http://localhost:5000/user-spot?user_email=${user?.email}`;
-
     useEffect(() => {
         fetch(url)
             .then(res => res.json())
@@ -44,7 +43,6 @@ const MyList = () => {
                             setSpots(remaining);
                         }
                     })
-
             }
         })
     };
@@ -94,7 +92,9 @@ const MyList = () => {
                                         <button onClick={() => handleSpotDelete(spot?._id)} className="btn btn-error text-white">Delete</button>
                                     </td>
                                     <td>
-                                        <button className="btn btn-info text-white">Update</button>
+                                        <Link to={`/update-spot/${spot?._id}`}>
+                                            <button className="btn btn-info text-white">Update</button>
+                                        </Link>
                                     </td>
                                 </tr>
                             ))
