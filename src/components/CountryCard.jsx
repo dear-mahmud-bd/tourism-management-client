@@ -1,5 +1,6 @@
 import PropTypes from 'prop-types';
 import { useNavigate } from 'react-router-dom';
+import { Tooltip } from 'react-tooltip';
 
 const CountryCard = ({ country }) => {
     const { country: ctry, image, description, slug } = country;
@@ -11,9 +12,8 @@ const CountryCard = ({ country }) => {
 
     return (
         <div onClick={() => handleCardClick(slug)}>
-            <article className="mx-auto w-full h-80 shadow-xl bg-cover bg-center transform duration-500 cursor-pointer group"
-                style={{ backgroundImage: `url(${image})` }}
-            >
+            <article data-tooltip-id="my-tooltip" data-tooltip-content={`Click to see all tourist spot in ${ctry}`} className="mx-auto w-full h-80 shadow-xl bg-cover bg-center transform duration-500 cursor-pointer group"
+                style={{ backgroundImage: `url(${image})` }}>
                 <div className="bg-black bg-opacity-20 h-full px-10 flex flex-wrap flex-col justify-end hover:bg-opacity-75 transform duration-300">
                     <h1 className="text-white text-3xl mb-5 transform translate-y-12 group-hover:translate-y-0 duration-300">
                         {ctry}
@@ -25,6 +25,7 @@ const CountryCard = ({ country }) => {
                     </p>
                 </div>
             </article>
+            <Tooltip id="my-tooltip" />
         </div>
     );
 };

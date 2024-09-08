@@ -12,13 +12,15 @@ import UserProfile from "../Pages/UserProfile";
 import AddTouristSpot from "../Pages/AddTouristSpot";
 import MyList from "../Pages/MyList";
 import UpdateSpot from "../Pages/UpdateSpot";
+import Contact from "../Pages/Contact";
+import ErrorEle from "../Pages/ErrorEle";
 
 
 const router = createBrowserRouter([
     {
         path: "/",
         element: <App></App>,
-        errorElement: <h1>Error</h1>,
+        errorElement: <ErrorEle></ErrorEle>,
         children: [
             { path: "/", element: <Home></Home>, },
             {
@@ -66,7 +68,7 @@ const router = createBrowserRouter([
             },
 
 
-            { path: "/contact", element: <h1>Contact </h1>, },
+            { path: "/contact", element: <Contact></Contact>, },
             { path: "/login", element: <LogIn></LogIn>, },
             { path: "/register", element: <Register></Register>, },
             { path: "*", element: <NotFound></NotFound>, },

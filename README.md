@@ -13,5 +13,5 @@
 - To show the message, the website used `sweetalert2` and `react-toastify`.
 - Handled optional chaining in URLs to show tourist spots in specific countries.
 - Add dark and light theme with daisyUI.
-- `Handle errorElement Page.`
+- Less used `react-simple-typewriter` and `react-tooltip`.
 

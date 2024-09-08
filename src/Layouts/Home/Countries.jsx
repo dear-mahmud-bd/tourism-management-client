@@ -7,7 +7,7 @@ const Countries = () => {
     const [countries, setCountries] = useState([]);
     useEffect(() => {
         const fetchData = async () => {
-            const res = await axios.get('/countries.json');
+            const res = await axios.get('http://localhost:5000/all-country');
             setCountries(res.data);
         };
         fetchData();

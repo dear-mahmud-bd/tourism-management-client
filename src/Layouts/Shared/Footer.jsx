@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 
 const Footer = () => {
     return (
@@ -24,7 +25,7 @@ const Footer = () => {
                     <div className="w-full sm:w-1/2 md:w-1/4 lg:w-1/6 px-4 mb-4">
                         <h2 className="text-xl font-bold mb-4">Contact</h2>
                         <ul>
-                            <li><a href="" className=" hover:text-gray-600">Contact Us</a></li>
+                            <li><Link to='/contact' className=" hover:text-gray-600">Contact Us</Link></li>
                             <li><a href="" className=" hover:text-gray-600">Support</a></li>
                             <li><a href="" className=" hover:text-gray-600">FAQ</a></li>
                         </ul>
