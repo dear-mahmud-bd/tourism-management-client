@@ -7,6 +7,7 @@ import { BiLogIn } from 'react-icons/bi';
 import { FaEye, FaEyeSlash } from 'react-icons/fa';
 import { Helmet } from 'react-helmet';
 import { showToast } from '../utility/useToast';
+import Others from '../Layouts/Accounts/Others';
 
 const LogIn = () => {
     const { userSignIn } = useContext(AuthContext);
@@ -34,7 +35,7 @@ const LogIn = () => {
             </Helmet>
             <h1 className="text-3xl xl:text-4xl font-extrabold text-center mb-5">Welcome back</h1>
 
-            <div className="mx-auto max-w-md">
+            <div className="mx-auto max-w-md bg-white p-5 rounded">
 
                 <form onSubmit={handleSubmit(onSubmit)}>
                     <input
@@ -67,6 +68,8 @@ const LogIn = () => {
                 <p className="mt-5 text-xs text-gray-600 text-center ">
                     Don&apos;t have an account? <Link to='/register' className="border-b border-gray-500">Register</Link>
                 </p>
+                
+                <Others></Others>
             </div>
         </div>
     );

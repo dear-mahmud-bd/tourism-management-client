@@ -21,7 +21,7 @@ const TouristSpotCard = ({ spot }) => {
     };
 
     return (
-        <div className="rounded-lg overflow-hidden shadow-lg flex flex-col h-full">
+        <div className="rounded-lg bg-white overflow-hidden shadow-lg flex flex-col h-full">
             
             <div className="relative">
                 <img src={image} alt={tourists_spot_name} className="w-full h-48 object-cover" />

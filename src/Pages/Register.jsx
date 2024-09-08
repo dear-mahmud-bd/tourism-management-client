@@ -6,6 +6,7 @@ import { Helmet } from 'react-helmet';
 import useTogglePassword from '../utility/useTogglePassword';
 import { FaEye, FaEyeSlash } from 'react-icons/fa';
 import { showToast } from '../utility/useToast';
+import Others from '../Layouts/Accounts/Others';
 
 
 const Register = () => {
@@ -57,7 +58,7 @@ const Register = () => {
             </Helmet>
 
             <h1 className="text-3xl xl:text-4xl font-extrabold text-center mb-5">Register</h1>
-            <div className="mx-auto max-w-md">
+            <div className="mx-auto max-w-md bg-white p-5 rounded-lg">
                 <form onSubmit={handleSubmit(onSubmit)}>
                     <input
                         {...register('name', { required: true })}
@@ -128,6 +129,7 @@ const Register = () => {
                 <p className="mt-5 text-xs text-gray-600 text-center">
                     Already have an account? <Link to='/login' className="border-b border-gray-500">Log In</Link>
                 </p>
+                <Others></Others>
             </div>
         </div>
     );

@@ -1,6 +1,6 @@
-# [WanderSEA](http://localhost:5173/) - Wander Southeast Asia
+# [WanderSEA](https://wander-sea-02.web.app/) - Wander Southeast Asia
 
-## [Live Site URL](http://localhost:5173/)
+## [Live Site URL](https://wander-sea-02.web.app/)
 
 ### Category -`B9 A10 Type-01 Requirements`
 
@@ -12,5 +12,6 @@
 - Google `firebase` is used for authentication and authorization.
 - To show the message, the website used `sweetalert2` and `react-toastify`.
 - Handled optional chaining in URLs to show tourist spots in specific countries.
-- handle errorElement Page.
+- Add dark and light theme with daisyUI.
+- `Handle errorElement Page.`
 

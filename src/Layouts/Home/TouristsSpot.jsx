@@ -22,7 +22,7 @@ const TouristsSpot = () => {
                     ))}
                 </div>
                 <div className="text-center">
-                    <Link to='/tourists-spot' className="btn bg-customPaleBeige hover:bg-customSandyBrown mt-4">All Tourists Spot</Link>
+                    <Link to='/tourists-spot' className="btn text-white bg-customPaleBeige hover:bg-customSandyBrown mt-4">All Tourists Spot</Link>
                 </div>
             </div>
     );

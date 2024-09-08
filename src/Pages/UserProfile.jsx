@@ -55,16 +55,16 @@ const UserProfile = () => {
                             <div>
                                 <label className="block text-sm font-medium text-gray-700">New Name</label>
                                 <input {...register('newName', { required: true })}
-                                    type="text" className="input input-bordered w-full" placeholder="Enter your name" />
+                                    type="text" className="w-full px-8 py-4 rounded-lg font-medium bg-gray-100 border border-gray-200 text-gray-600 placeholder-gray-500 text-sm focus:outline-none focus:border-gray-400 focus:bg-white" placeholder="Enter your name" />
                             </div>
                             <div>
                                 <label className="block text-sm font-medium text-gray-700">New Photo URL</label>
                                 <input {...register('photoUrl', { required: true })}
-                                    type="url" className="input input-bordered w-full" placeholder="Enter your photo URL" />
+                                    type="url" className="w-full px-8 py-4 rounded-lg font-medium bg-gray-100 border border-gray-200 text-gray-600 placeholder-gray-500 text-sm focus:outline-none focus:border-gray-400 focus:bg-white" placeholder="Enter your photo URL" />
                             </div>
                             <div>
                                 <label className="block text-sm font-medium text-gray-700">Email</label>
-                                <input type="email" placeholder={user?.email} disabled className="input input-bordered w-full" />
+                                <input type="email" placeholder={user?.email} disabled className="w-full px-8 py-4 rounded-lg font-medium bg-gray-100 border border-gray-200 placeholder-gray-500 text-sm focus:outline-none focus:border-gray-400 focus:bg-white hover:cursor-not-allowed" />
                             </div>
                             <button type="submit" className="btn bg-customPaleBeige hover:bg-customSandyBrown text-white w-full mt-4" disabled={loading}>
                                 {loading ? 'Updating...' : 'Update Profile'}
