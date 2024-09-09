@@ -1,15 +1,17 @@
 import { Helmet } from "react-helmet";
 import { useLoaderData } from "react-router-dom";
 import { useForm } from 'react-hook-form';
-import { useContext, useEffect } from "react";
+import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../providers/AuthProvider";
 import { showToast } from "../utility/useToast";
+import Loading from "../components/Loading";
 
 
 const UpdateSpot = () => {
+    const [loading, setLoading] = useState(false);
     const { user } = useContext(AuthContext);
     const spot = useLoaderData();
-    // console.log(user.email, spot);
+    // console.log(user.email, spot) ;
 
     const {
         register,
@@ -28,12 +30,13 @@ const UpdateSpot = () => {
         setValue('travel_time', spot?.travel_time || '');
         setValue('totalVisitorsPerYear', spot?.totalVisitorsPerYear || '');
         setValue('user_email', spot?.user_email || '');
-        setValue('user_name', spot?.user_name || '');
-    }, [spot, setValue]);
+        setValue('user_name', user?.displayName || '');
+    }, [spot, setValue, user]);
 
     const onSubmit = (formData) => {
-        console.log(formData);
-        fetch(`http://localhost:5000/all-spot/${spot?._id}`, {
+        // console.log(formData);
+        setLoading(true);
+        fetch(`https://tourism-server-01.vercel.app/all-spot/${spot?._id}`, {
             method: 'PUT',
             headers: {
                 'content-type': 'application/json'
@@ -42,16 +45,22 @@ const UpdateSpot = () => {
         })
             .then(res => res.json())
             .then(data => {
-                console.log(data);
+                // console.log(data);
                 if (data.modifiedCount > 0) {
-                    showToast('success','Spot Updated Successfully');
-                }else{
-                    showToast('error','Spot was not Updated');
+                    showToast('success', 'Spot Updated Successfully');
+                } else {
+                    showToast('error', 'Spot was not Updated');
                 }
             })
-
+            .catch(() => {
+                showToast('error', 'An error occurred while updating the spot.');
+            })
+            .finally(() => {
+                setLoading(false);
+            });
     };
 
+    if (loading) return <Loading />;
 
     if (user?.email !== spot?.user_email) {
         return (

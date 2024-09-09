@@ -28,8 +28,8 @@ const Others = () => {
                 showToast('success', 'Sign In with GitHub');
                 navigate(location?.state ? location.state : '/profile');
             })
-            .catch((error) => {
-                console.error("GitHub Sign-In Error:", error);
+            .catch(() => {
+                // console.error("GitHub Sign-In Error:", error);
                 showToast('error', 'Failed to Sign In via GitHub.');
             });
     };

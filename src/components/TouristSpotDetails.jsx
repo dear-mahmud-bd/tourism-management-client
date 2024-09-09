@@ -1,19 +1,26 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { Helmet } from "react-helmet";
 import { FaUsers } from "react-icons/fa";
 import { IoLocationSharp } from "react-icons/io5";
 import { LuCalendarDays } from "react-icons/lu";
 import { MdAccessTime } from "react-icons/md";
 import { useLoaderData } from "react-router-dom";
+import Loading from "./Loading";
 
 
 const TouristSpotDetails = () => {
+    const [loading, setLoading] = useState(true);
     const touristSpot = useLoaderData();
-    // 66daf4a21c58959931fb8ca5
 
     useEffect(() => {
         window.scrollTo(0, 0);
     }, []);
+
+    useEffect(() => {
+        if (touristSpot) {
+            setLoading(false);
+        }
+    }, [touristSpot]);
 
     if (!touristSpot) {
         return (
@@ -26,6 +33,8 @@ const TouristSpotDetails = () => {
             </div>
         );
     }
+    
+    if (loading) return <Loading />
 
     return (
         <div className="container mx-auto p-2">

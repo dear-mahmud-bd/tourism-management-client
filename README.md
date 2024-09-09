@@ -14,4 +14,5 @@
 - Handled optional chaining in URLs to show tourist spots in specific countries.
 - Add dark and light theme with daisyUI.
 - Less used `react-simple-typewriter` and `react-tooltip`.
-
+- Use a loading spinner when the data is in a loading state.
+ 

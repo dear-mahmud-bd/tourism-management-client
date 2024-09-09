@@ -2,8 +2,10 @@ import { useLoaderData } from "react-router-dom";
 import TouristSpotCard from "../components/TouristSpotCard";
 import { useEffect, useState } from "react";
 import { Helmet } from "react-helmet";
+import Loading from "../components/Loading";
 
 const AllTouristSpot = () => {
+    const [loading, setLoading] = useState(true);
     const spots = useLoaderData();
     // console.log(spots);
 
@@ -16,6 +18,7 @@ const AllTouristSpot = () => {
     useEffect(() => {
         if (spots) {
             setTouristSpot(spots);
+            setLoading(false);
         }
     }, [spots]);
     
@@ -26,6 +29,8 @@ const AllTouristSpot = () => {
         else if (criteria === 'descending') sortedSpots.sort((a, b) => b.average_cost - a.average_cost); 
         setTouristSpot(sortedSpots); 
     };
+
+    if (loading) return <Loading />
     
     return (
         <div >

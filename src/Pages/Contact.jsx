@@ -25,7 +25,7 @@ const Contact = () => {
     }, [user, setValue]);
 
     const handleContactForm = (formData) => {
-        console.log(formData);
+        // console.log(formData);
         showToast('success', 'Message sent successfully!');
         if (isLoged) {
             reset({

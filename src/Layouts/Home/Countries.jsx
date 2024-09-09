@@ -1,18 +1,24 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import CountryCard from "../../components/CountryCard";
+import Loading from "../../components/Loading";
 
 
 const Countries = () => {
+    const [loading, setLoading] = useState(true);
     const [countries, setCountries] = useState([]);
     useEffect(() => {
         const fetchData = async () => {
-            const res = await axios.get('http://localhost:5000/all-country');
+            // const res = await axios.get('https://tourism-server-01.vercel.app/all-country');
+            const res = await axios.get('countries.json');
             setCountries(res.data);
+            setLoading(false);
         };
         fetchData();
     }, []);
     // console.log(countries);
+
+    if (loading) return <Loading />;
 
     return (
         <div>

@@ -4,26 +4,29 @@ import { Helmet } from "react-helmet";
 import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
 import { showToast } from "../utility/useToast";
+import Loading from "../components/Loading";
 
 const MyList = () => {
+    const [loading, setLoading] = useState(true);
     const { user } = useContext(AuthContext);
     const [spots, setSpots] = useState([]);
 
-    const url = `http://localhost:5000/user-spot?user_email=${user?.email}`;
+    const url = `https://tourism-server-01.vercel.app/user-spot?user_email=${user?.email}`;
     useEffect(() => {
         fetch(url)
             .then(res => res.json())
             .then(data => {
                 // console.log('Fetched User data:', data);
                 setSpots(data);
+                setLoading(false);
             })
     }, [url]);
 
-    const handleSpotDelete = _id => {
-        console.log(_id);
+    const handleSpotDelete = (name, _id) => {
+        // console.log(_id);
         Swal.fire({
             title: 'Are you sure?',
-            text: "You want to delete this spot!",
+            text: `You want to delete '${name}' spot! `,
             icon: 'warning',
             showCancelButton: true,
             confirmButtonColor: '#d33333',
@@ -31,12 +34,12 @@ const MyList = () => {
             confirmButtonText: 'Yes, delete it!'
         }).then((result) => {
             if (result.isConfirmed) {
-                fetch(`http://localhost:5000/all-spot/${_id}`, {
+                fetch(`https://tourism-server-01.vercel.app/all-spot/${_id}`, {
                     method: 'DELETE'
                 })
                     .then(res => res.json())
                     .then(data => {
-                        console.log(data);
+                        // console.log(data);
                         if (data.deletedCount > 0) {
                             showToast('success', 'Your tourist spot has been deleted.');
                             const remaining = spots.filter(cof => cof._id !== _id);
@@ -46,6 +49,9 @@ const MyList = () => {
             }
         })
     };
+
+    if (loading)return <Loading />;
+
     return (
         <div className="max-w-5xl mx-auto">
             <Helmet>
@@ -89,7 +95,7 @@ const MyList = () => {
                                         </div>
                                     </td>
                                     <td>
-                                        <button onClick={() => handleSpotDelete(spot?._id)} className="btn btn-error text-white">Delete</button>
+                                        <button onClick={() => handleSpotDelete(spot?.tourists_spot_name, spot?._id)} className="btn btn-error text-white">Delete</button>
                                     </td>
                                     <td>
                                         <Link to={`/update-spot/${spot?._id}`}>

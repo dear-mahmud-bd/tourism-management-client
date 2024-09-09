@@ -6,7 +6,7 @@ import { AuthContext } from '../providers/AuthProvider';
 
 const UserProfile = () => {
     const { user, loading, setUser, userUpdateProfile } = useContext(AuthContext);
-    console.log(user);
+    // console.log(user);
     
 
     const { register, handleSubmit, setValue } = useForm();

@@ -32,7 +32,7 @@ const router = createBrowserRouter([
                     let query = '';
                     if (country) query = `?country=${country}`;
                     try {
-                        const res = await axios.get(`http://localhost:5000/all-spot${query}`);
+                        const res = await axios.get(`https://tourism-server-01.vercel.app/all-spot${query}`);
                         return res.data;
                     } catch (error) {
                         throw new Response('Failed to load data', { status: error.response?.status || 500 });
@@ -44,7 +44,7 @@ const router = createBrowserRouter([
                 element: <ProtectedRoute> <TouristSpotDetails></TouristSpotDetails> </ProtectedRoute>,
                 loader: async ({ params }) => {
                     try {
-                        const res = await axios.get(`http://localhost:5000/all-spot/${params._id}`);
+                        const res = await axios.get(`https://tourism-server-01.vercel.app/all-spot/${params._id}`);
                         return res.data;
                     } catch (error) {
                         throw new Response('Failed to load data', { status: error.response?.status || 500 });
@@ -59,7 +59,7 @@ const router = createBrowserRouter([
                 element: <ProtectedRoute> <UpdateSpot></UpdateSpot> </ProtectedRoute>,
                 loader: async ({ params }) => {
                     try {
-                        const res = await axios.get(`http://localhost:5000/all-spot/${params._id}`);
+                        const res = await axios.get(`https://tourism-server-01.vercel.app/all-spot/${params._id}`);
                         return res.data;
                     } catch (error) {
                         throw new Response('Failed to load data', { status: error.response?.status || 500 });

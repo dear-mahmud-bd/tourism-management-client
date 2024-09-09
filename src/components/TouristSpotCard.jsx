@@ -37,8 +37,8 @@ const TouristSpotCard = ({ spot }) => {
                     Country: <span className='text-customLightBrown'>{country_Name}</span>
                 </p>
 
-                <div className="text-xl font-bold text-customLightBrown mt-2 flex items-end gap-2">
-                    ${average_cost}.00 <p className="text-sm text-gray-500">Price starts from</p>
+                <div className="text-xl font-bold text-customLightBrown mt-2 flex items-center gap-2">
+                    <p className="text-sm text-gray-500">Cost starts from</p> ${average_cost}.00 
                 </div>
 
                 <div className="mt-2">

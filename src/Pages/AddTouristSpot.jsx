@@ -1,11 +1,13 @@
-
-import { useContext, useEffect } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { AuthContext } from '../providers/AuthProvider';
 import { Helmet } from 'react-helmet';
 import Swal from 'sweetalert2';
+import Loading from '../components/Loading';
+import { showToast } from '../utility/useToast';
 
 const AddTouristSpot = () => {
+    const [loading, setLoading] = useState(false);
     const { user } = useContext(AuthContext);
 
     const {
@@ -22,8 +24,9 @@ const AddTouristSpot = () => {
 
 
     const onSubmit = (formData) => {
-        console.log(formData);
-        fetch('http://localhost:5000/all-spot', {
+        // console.log(formData);
+        setLoading(true);
+        fetch('https://tourism-server-01.vercel.app/all-spot', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'
@@ -58,7 +61,15 @@ const AddTouristSpot = () => {
                     });
                 }
             })
+            .catch(() => {
+                showToast('error', 'An error occurred while added the spot.');
+            })
+            .finally(() => {
+                setLoading(false);
+            });
     };
+    
+    if (loading) return <Loading />;
 
     return (
         <div className="max-w-6xl mx-auto p-6 bg-white rounded-lg shadow-md">

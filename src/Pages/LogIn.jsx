@@ -1,5 +1,5 @@
 import { useContext } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import { AuthContext } from '../providers/AuthProvider';
 import useTogglePassword from '../utility/useTogglePassword';
@@ -13,6 +13,8 @@ const LogIn = () => {
     const { userSignIn } = useContext(AuthContext);
     const [passwordVisible, togglePasswordVisibility] = useTogglePassword();
 
+    const navigate = useNavigate();
+    const location = useLocation();
     
     const { register, handleSubmit, formState: { errors } } = useForm();
 
@@ -21,7 +23,7 @@ const LogIn = () => {
         userSignIn(email, password)
             .then(() => {
                 showToast('success','Log In Successfully');
-                // navigate
+                navigate(location?.state ? location.state : '/profile');
             })
             .catch(() => {
                 showToast('error','Invalid Email or Password');
