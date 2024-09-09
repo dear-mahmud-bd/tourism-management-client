@@ -1,5 +1,5 @@
 import { useContext } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import { AuthContext } from '../providers/AuthProvider';
 import { Helmet } from 'react-helmet';
@@ -11,6 +11,7 @@ import Others from '../Layouts/Accounts/Others';
 
 const Register = () => {
     const { loading, createUser, userUpdateProfile } = useContext(AuthContext);
+    const navigate = useNavigate();
 
     const [passwordVisible, togglePasswordVisibility] = useTogglePassword();
     const [confirmPasswordVisible, toggleConfirmPasswordVisibility] = useTogglePassword();
@@ -38,8 +39,7 @@ const Register = () => {
                     });
 
                 showToast('success', 'Account Created Successfully');
-                
-                
+                navigate('/profile');
             })
             .catch(error => {
                 if (error.message === 'Firebase: Error (auth/email-already-in-use).') {
@@ -122,7 +122,7 @@ const Register = () => {
                         <svg className="w-6 h-6 -ml-2" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                             <path d="M16 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2" /> <circle cx="8.5" cy="7" r="4" /> <path d="M20 8v6M23 11h-6" />
                         </svg>
-                        <span className="ml-3"> {loading ? 'Loading...' : 'Register'}  </span>
+                        <span className="ml-3"> {loading ? <span className="loading loading-spinner loading-xs"></span> : 'Register'}  </span>
                     </button>
                 </form>
 

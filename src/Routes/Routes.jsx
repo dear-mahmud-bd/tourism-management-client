@@ -39,6 +39,8 @@ const router = createBrowserRouter([
                     }
                 },
             },
+
+            // Protected Route ...
             {
                 path: "/tourists-spot/:_id",
                 element: <ProtectedRoute> <TouristSpotDetails></TouristSpotDetails> </ProtectedRoute>,

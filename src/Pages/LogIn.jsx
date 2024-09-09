@@ -10,7 +10,7 @@ import { showToast } from '../utility/useToast';
 import Others from '../Layouts/Accounts/Others';
 
 const LogIn = () => {
-    const { userSignIn } = useContext(AuthContext);
+    const { loading, userSignIn } = useContext(AuthContext);
     const [passwordVisible, togglePasswordVisibility] = useTogglePassword();
 
     const navigate = useNavigate();
@@ -63,7 +63,7 @@ const LogIn = () => {
 
                     <button type='submit' className="mt-5 tracking-wide font-semibold bg-customPaleBeige text-gray-100 w-full py-4 rounded-lg hover:bg-customSandyBrown transition-all duration-300 ease-in-out flex items-center justify-center focus:shadow-outline focus:outline-none">
                         <BiLogIn className='text-2xl' />
-                        <span className="ml-3"> Log In </span>
+                        <span className="ml-3"> {loading ? <span className="loading loading-spinner loading-xs"></span> : 'Log In'} </span>
                     </button>
                 </form>
 
